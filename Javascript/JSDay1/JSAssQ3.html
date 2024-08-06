@@ -1,0 +1,24 @@
+<html>
+<head>
+  <title>Pattern Web Page</title>
+  <script>
+    function printPattern() {
+      let n = parseInt(document.getElementById("n").value);
+      let pattern = "";
+      for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= i; j++) {
+          pattern += "* ";
+        }
+        pattern += "<br>";
+      }
+      document.getElementById("ResultDiv").innerHTML = pattern;
+    }
+  </script>
+</head>
+<body>
+  Input: <input type="text" id="n" value="Enter Number" onfocus="this.value=''" onblur="printPattern()"/>
+  <button type="button" onclick="printPattern()">Design</button>
+  <br><br><br>
+  <div id="ResultDiv"></div>
+</body>
+</html>

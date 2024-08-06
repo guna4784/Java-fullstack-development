@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script>
+        function calculate() {
+            if (confirm("Do you want to continue?")) {
+                var a = parseFloat(document.getElementById("n1").value);
+                var b = parseFloat(document.getElementById("n2").value);
+                var op = document.getElementById("op").value;
+                var result = "";
+
+                if (op === "add")
+                    result = "Add: " + (a + b);
+                else if (op === "sub")
+                    result = "Sub: " + (a - b);
+                else if (op === "multi")
+                    result = "Mul: " + (a * b);
+                else if (op === "divid")
+                    result = "Divid: " + (a / b);
+                else
+                    result = "Please select a valid operation.";
+
+                document.getElementById("resultDiv").innerHTML = "<font color='green'><b>" + result + "</b></font>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Simple Calculator</h2>
+    Enter First Number: <input type="text" id="n1"/><br><br>
+    Enter Second Number: <input type="text" id="n2"/><br><br>
+    Select Operation: 
+    <select id="op">
+        <option value="add">Add</option>
+        <option value="sub">Subtract</option>
+        <option value="multi">Multiply</option>
+        <option value="divid">Divide</option>
+    </select><br><br>
+    <button onclick="calculate()">Calculate</button>
+    <div id="resultDiv"></div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+    <title>Prime Number</title>
+    <script>
+    function Prime() {
+    let n = parseInt(document.getElementById("n").value);
+    let prime = n > 1;
+
+    for (let i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            prime = false;
+            break;
+        }
+    }
+
+    document.getElementById("result").innerHTML = prime ? "Prime" : "Not prime";
+}
+    </script>
+</head>
+<body>
+    <input type=""id="n" />
+    <button onclick="Prime()">Check</button>
+    <p id="result"></p>
+</body>
+</html>

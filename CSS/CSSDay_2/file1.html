@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('12.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .login-container {
+            background-color: rgba(10, 2, 2, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(23, 16, 16, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #fff;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #fff; 
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.1); 
+            color: #fff;
+        }
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        button {
+            background-color:rgb(117, 233, 233);
+            padding: 10px 20px;
+            border: 1px solid #fff; 
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color:green
+        }
+        #Div7 {
+            border: 2px solid green;
+            background-color: yellow; width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: #bd5a5a;
+            display: flex;
+            justify-content: center;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .checkbox-container input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img id="Div7" src="images.jpeg" alt="Profile Picture" width="170" height="200">
+        <h1 id="demo">LOGIN WINDOW</h1>
+        <label for="username"></label>
+        <input type="text" id="username" name="username" placeholder="EYour Email Address">
+        <label for="password"></label>
+        <input type="password" id="password" name="password" placeholder="Your Password">
+        <div class="checkbox-container">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember"><i>Agree With <u>Terms & Conditions</u></i></label>
+        </div>
+        <button>Login</button>
+    </div>
+</body>
+</html>

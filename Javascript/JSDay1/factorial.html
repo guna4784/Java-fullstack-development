@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator with Factorial</title>
+    <script>
+        function calculate() {
+            if (confirm("Do you want to continue?")) {
+                var a = parseFloat(document.getElementById("n1").value);
+                var b = parseFloat(document.getElementById("n2").value);
+                var op = document.getElementById("op").value;
+                var result = "";
+
+                if (isNaN(a) || (document.getElementById("n2").value !== "" && isNaN(b))) {
+                    result = "Please enter valid numbers.";
+                } else if (op === "factorial") {
+                    result = "Factorial of " + a + ": " + factorial(a);
+                    if (!isNaN(b)) result += "<br>Factorial of " + b + ": " + factorial(b);
+                } else {
+                    result = "Please select a valid operation.";
+                }
+
+                document.getElementById("resultDiv").innerHTML = "<font color='green'><b>" + result + "</b></font>";
+            }
+        }
+
+        function factorial(num) {
+            if (num === 0 || num === 1) return 1;
+            let fact = 1;
+            for (let i = 1; i <= num; i++) {
+                fact *= i;
+            }
+            return fact;
+        }
+    </script>
+</head>
+<body>
+    <h2>Calculator with Factorial</h2>
+    Enter First Number: <input type="text" id="n1"/><br><br>
+    Enter Second Number: <input type="text" id="n2"/><br><br>
+    Select Operation: 
+    <select id="op">
+        <option value="factorial">Factorial</option>
+    </select><br><br>
+    <button onclick="calculate()">Calculate</button>
+    <div id="resultDiv"></div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .calci {
+            border: 5px solid black;
+            margin-left: 45%;
+            width: fit-content;
+            background-color: gray;
+            margin-top: 5%;
+            width: 340px;
+            height: 500px;
+        }
+        
+        .but {
+            display: flex;
+        }
+        button {
+            width: 70px;
+            height: 70px;
+            margin: 6px;
+            border-radius: 3px;
+            color: white;
+            background-color: rgb(18, 24, 24);
+            border-color: aliceblue;
+        }
+        .cal {
+            margin-top: 4px;
+            height: 60px;
+            width: 318px;
+            background-color: rgb(241, 232, 232);
+            margin-inline: 5px;
+            border: 4px solid rgb(16, 8, 8);
+        }
+    </style>
+    <script>
+        function clearDisplay() {
+            document.querySelector('.cal').value = '';
+        }
+
+        function deleteLast() {
+            let display = document.querySelector('.cal').value;
+            document.querySelector('.cal').value = display.slice(0, -1);
+        }
+
+        function val(value) {
+            document.querySelector('.cal').value += value;
+        }
+
+        function calculate() {
+            let display = document.querySelector('.cal').value;
+            try {
+                document.querySelector('.cal').value = eval(display);
+            } catch {
+                document.querySelector('.cal').value = 'Error';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="calci">
+        <input class="cal" type="text" readonly>
+        <div class="butt">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="val('%')">%</button>
+            <button onclick="deleteLast()">&larr;</button>
+            <button onclick="val('/')">/</button>
+        </div>
+        <div class="butt">
+            <button onclick="val('7')">7</button>
+            <button onclick="val('8')">8</button>
+            <button onclick="val('9')">9</button>
+            <button onclick="val('*')">*</button>
+        </div>
+        <div class="butt">
+            <button onclick="val('4')">4</button>
+            <button onclick="val('5')">5</button>
+            <button onclick="val('6')">6</button>
+            <button onclick="val('-')">-</button>
+        </div>
+        <div class="butt">
+            <button onclick="val('1')">1</button>
+            <button onclick="val('2')">2</button>
+            <button onclick="val('3')">3</button>
+            <button onclick="val('+')">+</button>
+        </div>
+        <div class="butt">
+            <button onclick="val('00')">00</button>
+            <button onclick="val('0')">0</button>
+            <button onclick="val('.')">.</button>
+            <button onclick="calculate()">=</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>My First Web Page</title>
+<script>
+function factorial() {
+let fact = 1;
+let n = parseInt(document.getElementById("n").value);
+for(let i=1; i<=n; i++){
+fact = fact * i;
+}
+document.getElementById("ResultDiv").innerHTML="<b>Factorial :" + fact;
+}
+</script>
+</head>
+<body>input: <input type="text" id="n" value="Enter Number" onfocus="this.value=''" onblur="factorial()"/><br><br>
+<button type="button" onclick="displayInput()">Enter</button>
+
+<br>
+<br><br>
+<div id="ResultDiv">
+</div>
+</body>
+</html>
