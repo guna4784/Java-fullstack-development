@@ -1,0 +1,499 @@
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Wed Aug 7 09:52:26 2024
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+Last Successful login time: Tue Aug 06 2024 20:47:28 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> creat table tbl_employee (eid number(5), ename varchar(20), esalary number(5));
+SP2-0734: unknown command beginning "creat tabl..." - rest of line ignored.
+SQL> create table tbl_employee (eid number(5), ename varchar(20), esalary number(5));
+
+Table created.
+
+SQL> insert into tbl_employee values(101,'guna',2000);
+
+1 row created.
+
+SQL> insert into tbl_employee values(102,'saran',3000);
+
+1 row created.
+
+SQL> insert into tbl_employee values(103,'rahul',4000);
+
+1 row created.
+
+SQL> insert into tbl_employee values(103,'ram',5000);
+
+1 row created.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee where eid in(101,102);
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+
+SQL> select * from tbl_employee where eid not in(103,102);
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+
+SQL> select * from tbl_employee where eid not in(102);
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee is esalary between 2000 and 4000;
+select * from tbl_employee is esalary between 2000 and 4000
+                           *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select * from tbl_employee where esalary between 2000 and 4000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+
+SQL> select * from tbl_employee where esalary not between 2000 and 4000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       103 ram                        5000
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee where esalary >= 2000 and eid in (101,102)
+  2  select * from tbl_employee where esalary >= 2000 and eid in (101,102);
+select * from tbl_employee where esalary >= 2000 and eid in (101,102)
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select * from tbl_employee where esalary >= 2000 and eid in (101,102);
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+
+SQL> select * from tbl_employee where esalary >= 2000 or eid in (101,102);
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee where ename like 's%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       102 saran                      3000
+
+SQL> select * from tbl_employee where ename like '_a%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee where enamenot like 'a%';
+select * from tbl_employee where enamenot like 'a%'
+                                 *
+ERROR at line 1:
+ORA-00904: "ENAMENOT": invalid identifier
+
+
+SQL> select * from tbl_employee where enamenot like 'a%';
+select * from tbl_employee where enamenot like 'a%'
+                                 *
+ERROR at line 1:
+ORA-00904: "ENAMENOT": invalid identifier
+
+
+SQL> select * from tbl_employee where ename not like 'a%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee where ename not like 's%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee where ename not like '_a%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+
+SQL> select * from tbl_employee where ename  like '%a%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee where ename  like '%a';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+
+SQL> insert into tbl_employee(eid, esalary) values(104,5000);
+
+1 row created.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> select * from tbl_employee where ename is null;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       104                            5000
+
+SQL> select * from tbl_employee where ename is no null;
+select * from tbl_employee where ename is no null
+                                          *
+ERROR at line 1:
+ORA-00908: missing NULL keyword
+
+
+SQL> select * from tbl_employee where ename is not null;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+
+SQL> select * from tbl_employee order by eid;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> select * from tbl_employee order by eid desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       104                            5000
+       103 rahul                      4000
+       103 ram                        5000
+       102 saran                      3000
+       101 guna                       2000
+
+SQL> select * from tbl_employee order by esalary ;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> select * from tbl_employee order by esalary  desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       103 ram                        5000
+       104                            5000
+       103 rahul                      4000
+       102 saran                      3000
+       101 guna                       2000
+
+SQL> select * from tbl_employee order by eid,ename;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> select * from tbl_employee order by eid,ename desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 ram                        5000
+       103 rahul                      4000
+       104                            5000
+
+SQL> select * from tbl_employee order by eid,ename desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 ram                        5000
+       103 rahul                      4000
+       104                            5000
+
+SQL> select * from tbl_employee order by ename desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       104                            5000
+       102 saran                      3000
+       103 ram                        5000
+       103 rahul                      4000
+       101 guna                       2000
+
+SQL> select * from tbl_employee order by eid,ename desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 ram                        5000
+       103 rahul                      4000
+       104                            5000
+
+SQL> select * from tbl_employee order by eid desc,ename desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       104                            5000
+       103 ram                        5000
+       103 rahul                      4000
+       102 saran                      3000
+       101 guna                       2000
+
+SQL> select * from tbl_employee order by eid,ename desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 ram                        5000
+       103 rahul                      4000
+       104                            5000
+
+SQL> alter table tbl-employee add doj date;
+alter table tbl-employee add doj date
+               *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> alter table tbl_employee add doj date;
+
+Table altered.
+
+SQL> select * from tbl_employee ;
+
+       EID ENAME                   ESALARY DOJ
+---------- -------------------- ---------- ---------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> update table tbl_employee set doj=sysdata where eid=102;
+update table tbl_employee set doj=sysdata where eid=102
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> update tbl_employee set doj=sysdata where eid=102;
+update tbl_employee set doj=sysdata where eid=102
+                            *
+ERROR at line 1:
+ORA-00904: "SYSDATA": invalid identifier
+
+
+SQL> update table tbl_employee set doj=sysdate where eid=102;
+update table tbl_employee set doj=sysdate where eid=102
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> update tbl_employee set doj=sysdate where eid=102;
+
+1 row updated.
+
+SQL> select * from tbl_employee ;
+
+       EID ENAME                   ESALARY DOJ
+---------- -------------------- ---------- ---------
+       101 guna                       2000
+       102 saran                      3000 07-AUG-24
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> alter table tbl_employee drop column doj;
+
+Table altered.
+
+SQL> select * from tbl_employee ;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> alter table tbl_employee add doj varchar(10);
+
+Table altered.
+
+SQL> select * from tbl_employee ;
+
+       EID ENAME                   ESALARY DOJ
+---------- -------------------- ---------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> alter table tbl_employee modify esalary number(7);
+
+Table altered.
+
+SQL> select * from tbl_employee ;
+
+       EID ENAME                   ESALARY DOJ
+---------- -------------------- ---------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> desc tbl_employee ;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ ESALARY                                            NUMBER(7)
+ DOJ                                                VARCHAR2(10)
+
+SQL> alter table tbl_employee rename column esalary empsalary;
+alter table tbl_employee rename column esalary empsalary
+                                               *
+ERROR at line 1:
+ORA-00946: missing TO keyword
+
+
+SQL> alter table tbl_employee rename column esalary to empsalary;
+
+Table altered.
+
+SQL> select * from tbl_employee ;
+
+       EID ENAME                 EMPSALARY DOJ
+---------- -------------------- ---------- ----------
+       101 guna                       2000
+       102 saran                      3000
+       103 rahul                      4000
+       103 ram                        5000
+       104                            5000
+
+SQL> rename table_employee to tbl_employee1
+  2  rename table_employee to tbl_employee1;
+rename table_employee to tbl_employee1
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> rename table_employee to tbl_emp;
+rename table_employee to tbl_emp
+*
+ERROR at line 1:
+ORA-04043: object TABLE_EMPLOYEE does not exist
+
+
+SQL> rename tbl_employee to tbl_emp;
+
+Table renamed.
+
+SQL> drop tabl tbl_emp;
+drop tabl tbl_emp
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop table tbl_emp;
+
+Table dropped.
+
+SQL> n 21.3.0.0.0 21.3.0.0.0
